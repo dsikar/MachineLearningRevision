@@ -1,0 +1,49 @@
+\section{Variance}
+According to MatLab:  
+For a random variable vector A made up of $N$ scalar observations, the variance is the average of the squared differences from the mean, defined as:
+\begin{equation}
+V=\frac{1}{N-1}\sum_{i=1}^N|A_i-\mu|^2  \label{variance} 
+\end{equation}
+
+
+
+Note is this case the normalization factor for the variance is given as $N-1$. In some cases it may be given as $N$, being the normalization factors for sample and population respectively, that is to say, if the observations in vector $A$ contain the entire population, $N$ is used. If vector $A$ contains a sample of the population, $N-1$ is used.
+\subsection{Intuition}
+Given a vector $A$ with two values, [1 1], intuitively it can be seen the two values are the same, so the values do not vary. In code the function \textbf{\textit{var}} can be used to calculate the variance of the values in a vector:
+\begin{verbatim}
+>> var([1 1])
+
+ans =
+
+     0
+\end{verbatim}
+In this case, we can see the mean will be equal to 1 (1 + 1 / 2), so the part
+$$
+\sum_{i=1}^N|A_i-\mu|^2
+$$
+will be equal to 0, resulting in a multiplication by zero such that the variance will be equal to zero.
+
+If the vector contained different values, such as [1, 2], it can be seen there is variation so a variance greater than zero would be expected:
+\begin{verbatim}
+>> var([1 2])
+
+ans =
+
+    0.5000    
+\end{verbatim}
+If the vector contained values such as [1 30], it can be seen there is more variation than in vector [1 2], so a greater variance would be expected:
+\begin{verbatim}
+>> var([1 30])
+
+ans =
+
+  420.5000  
+\end{verbatim}
+Variance can therefore be defined as a quantity that expressed how much difference there are within a set of numbers, in this example, the number contained in vector $A$, examples [1 1] and [1 2] being different, and [1 30] being even more different, or said to present a larger variance than the first two examples.
+\subsection{Unit}
+Variance is expressed in square units, typically $\sigma^2$, the lower case greek letter \textit{sigma} squared.
+
+
+
+
+

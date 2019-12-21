@@ -1,0 +1,53 @@
+\section{Covariance}
+Covariance between two random variable vectors (TODO DEFINE) $A$ and $B$ can be defined as:
+\begin{equation}
+COV(A,B)=\frac{1}{N-1}\sum_{i=1}^N(A_i-\mu_A)(B_i-\mu_B)   \label{covariance}
+\end{equation}
+
+
+Where $\mu_A$ is the mean of $A$, and $\mu_B$ is the mean of $B$. Covariance indicates how two random variable vectors are related.
+\subsection{Intuition}
+Given two vectors, A [1 2 3] and B [2 4 6], we see that both sequences are increasing so both random variable vectors are said to have positive correlation. Calculating the value manually we have:
+\begin{verbatim}
+MeanA = (1 + 2 + 3) / 3 = 2
+MeanB = (2 + 4 + 6) / 3 = 4
+COV(A,B) = 1/2*( (1-2*2-4) + (2-2*4-4) + (3-2)*(6-4)
+COV(A,B) = 2
+\end{verbatim}
+In code:
+\begin{verbatim}
+>> cov([1 2 3], [2 4 6])
+
+ans =
+
+     1     2
+     2     4
+\end{verbatim}
+Noting Matlab cov function will return a covariance matrix consisting of pairwise covariance calculations between random variable vectors.
+$$
+C = 
+\begin{pmatrix}
+cov(A,A) & cov(A,B)\\
+cov(B,A) & cov(B,B)
+\end{pmatrix}
+$$
+If we calculate the covariance between vectors A [1 2 3] and B [-1 -2 -3]:
+\begin{verbatim}
+>> cov([1 2 3], [-1 -2 -3])
+
+ans =
+
+     1    -1
+    -1     1    
+\end{verbatim}
+we see the covariance is equal to -1. That is to say $A$ and $B$ have a negative covariance, or are inversely related.
+Finally we look at A [1 1 1] and B [2 2 2]. Intuitively it can be seen the values do not seem to be related. In code:
+\begin{verbatim}
+>> cov([1 1 1], [2 2 2])
+
+ans =
+
+     0     0
+     0     0
+\end{verbatim}
+we see A and B are neither positively nor negatively related.

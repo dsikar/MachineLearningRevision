@@ -1,0 +1,80 @@
+\section{Correlation}
+
+The correlation, or \textit{correlation coefficient}, or \textit{Pearson correlation coefficient}  between two random variable vector, is measure of their linear dependence, $A$ and $B$ defined as:
+\begin{equation}
+\rho(A,B) = \frac{COV(A,B)}{\sigma_A \sigma_B} \label{correlation}    
+\end{equation}
+
+
+where $\sigma_A$ and $\sigma_B$ and the standard deviations of A and B respectively. In Matlab, function $\rho(A,B)$ returns a matrix of correlation coefficients for each pairwise variable combination:
+$$
+R = 
+\begin{pmatrix}
+\rho(A,A) & \rho(A,B)\\
+\rho(B,A) & \rho(B,B)
+\end{pmatrix}
+$$
+Since A and B are always directly correlated to themselves, the correlation matrix can be written as:
+$$
+R = 
+\begin{pmatrix}
+1 & \rho(A,B)\\
+\rho(B,A) & 1
+\end{pmatrix}
+$$
+\subsection{Intuition}
+Correlation can be described as a normalized covariance. By dividing the covariance by the product of means, the covariance is scaled, resulting in a value in the range $\{-1,1\}$, provided standard deviations are greater than zero.  
+Random variable vectors can still be identified as positively or negatively correlated. For example, vectors [1 2 3] and [-1 -2 -3], as already observed with covariance, can be described as inversely related, or having a negative covariance. Looking at two examples in code:
+\begin{verbatim}
+>> corrcoef([1 2 3], [-1 -2 -3])
+
+ans =
+
+     1    -1
+    -1     1
+\end{verbatim}
+We see both vectors have the absolute maximum negative correlation. whereas vectors [1 2 3] and [2 4 6]:
+\begin{verbatim}
+>> corrcoef([1 2 3], [2 4 6])
+
+ans =
+
+     1     1
+     1     1
+\end{verbatim}
+Have the maximum positive correlation, that is to say, correlation tells the degree by which vectors are related.
+
+\subsection{Discussion}
+Both covariance and correlation are a concise way to compare sets of numbers. Both describe if sets, or vectors in the cases demonstrated, are negatively or positively related. Covariance can be thought of as a magnitude, while correlation can be thought of as a degree. Comparing vectors [1 500 1000] and [-1 -500 -1000], intuitively it can be say both have a negative correlation, which values in the first vector increase, corresponding values in the second vector decrease. Computing covariance and correlation in code:
+\begin{verbatim}
+>> cov([1 500 1000], [-1, -500, -1000])
+
+ans =
+
+   1.0e+05 *
+
+    2.4950   -2.4950
+   -2.4950    2.4950
+>> corrcoef([1 500 1000], [-1, -500, -1000])
+
+ans =
+
+     1    -1
+    -1     1  
+\end{verbatim}
+It can be noted that covariance is a large number, while the correlation indicates a best possible negative correlation. Comparing vectors [1 2 4] and [-1 -2 -4]:
+\begin{verbatim}
+>> cov([1 2 4], [-1 -2 -4])
+
+ans =
+
+    2.3333   -2.3333
+   -2.3333    2.3333
+>> corrcoef([1 2 4], [-1 -2 -4])
+
+ans =
+
+     1    -1
+    -1     1   
+\end{verbatim}
+We can still determine a negative covariance and correlation. Noting that covariance between vectors [1 2 4] and [-1 -2 -4] (-2.3333) is several order of magnitudes smaller than the covariance between vectors [1 500 1000] and [-1, -500, -1000] (-2.4950 * 1.0e+05).

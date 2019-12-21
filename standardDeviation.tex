@@ -1,0 +1,34 @@
+\section{Standard Deviation}
+Standard deviation is the square root of the variance, defined as:
+\begin{equation}
+S=\sqrt{\frac{1}{N-1}\sum_{i=1}^N|A_i-\mu|^2} \label{standardDeviation}    
+\end{equation}
+
+
+typically expressed as greek letter $\sigma$, lower case \textit{sigma}.
+
+\subsection{Intuition}
+The standard deviation of the values contained in a vector $A$, express how \textit{far} any given value is from the \textit{mean}, or $\mu$ as seen.  
+For our three examples:
+\begin{verbatim}
+>> mean([1 1; 1 2; 1 30]')
+
+ans =
+
+    1.0000    1.5000   15.5000
+\end{verbatim}
+we see the vectors, or in this case, array columns, which greater variance, also have a greater mean. The standard deviation then tell us how far away any given value is expected to be far from the mean:
+\begin{verbatim}
+>> std([1 1; 1 2; 1 30]')
+
+ans =
+
+         0    0.7071   20.5061
+\end{verbatim}
+that is to say, it is a measure of how spread out a set of numbers are.
+
+\subsection{units}
+Standard deviation is expressed in the same units as the mean.
+
+\subsection{Discussion}
+With respect to a set of numbers, vector $A$ in the examples shown, it follows that mean, variance and standard deviation are a concise form to describe a set of numbers, where the values in vector $A$ are centered (mean) and how spread out (standard deviation) the values are. Such that, given a vector with mean = 2 and standard deviation = 0.5, the expectation is that values in the array would be  centered around 2, most values ranging from 1.5 to 2.5. Given a vector with mean 100 and standard deviation equal to 50, the values in the array would be centered around 100, expected to mostly range from 50 to 150.
