@@ -1,0 +1,31 @@
+\section{Expectation and Covariance}
+
+In the introduction, we covered expectation and covariance, which we now revisit from a probabilistic perspective. 
+
+\subsection{Expectation}
+
+Expectation of a random variable is a probability theory concept, defined as:
+
+\begin{equation}
+E[X] = \sum_i x_i P[X=x_i] \label{Expectation}
+\end{equation}
+Where X is a discrete random variable taking on possible values $x_1,x_2,...,$. The expectation of X is a sum of all the values X can take, weighted by the probability that X assumes the given value. For example, when we roll a fair dice, the expectation is any value would have an equal probability of 1/6, such that the expectation of X, being the random variable taking all possible values of the experiment outcome, would be:
+$$
+    E[X]=1(\frac{1}{6}) + 2(\frac{1}{6}) + 3(\frac{1}{6}) + 4(\frac{1}{6}) + 5(\frac{1}{6}) + 6(\frac{1}{6})=\frac{7}{2}
+$$
+It is important to note in this example that the expectation of random variable X is not a value that X could assume, just the expected average value. In code this experiment can be performed likewise:
+\begin{verbatim}
+a = 0;
+b = 6;
+% generate 1000 random numbers in the range 1 to 6
+r = round((b-a).*rand(1000,1) + a + 0.5);
+disp(sum(r)/1000)
+    3.4840
+\end{verbatim}
+Note the multiplication by $\frac{1}{6}$ is implied in the random number generation, where approximately $\frac{1}{6}$ of every number in the range 1 to 6 is expected over 1000 draws.
+
+$$
+\frac{dP(D)}{dp}=53p^{52}(1-p)^{47}\big[-47p^{53}(1-p)^{46}\big]
+$$
+
+

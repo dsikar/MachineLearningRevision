@@ -1,47 +1,28 @@
-\documentclass{article}
-\usepackage{amsthm,amssymb}
+\documentclass{book}
 \usepackage{amsmath}
-\usepackage{witharrows}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\title{INM431 - Machine Learning Revision}
+\author{Daniel Sikar}
+\date{\today}
 \begin{document}
-
-\section*{Machine Learning Revision}
-Daniel Sikar  
-
-In this section we revise \textit{mean, variance, standard deviation, covariance} and \textit{correlation}.
-
+\maketitle
+ 
+\tableofcontents
+ 
 %%%%%%%%%%%%%%%%%%
 %% INTRODUCTION %%
 %%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%
-%% MEAN %%
-%%%%%%%%%%
+\input{introduction/introduction.tex}
 
-\input{mean.tex}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EXAMINABLE MATERIALS %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%
-%% VARIANCE %%
-%%%%%%%%%%%%%%
-
-\input{variance.tex}
-
-%%%%%%%%%%%%%%%%%%%%%%%%
-%% STANDARD DEVIATION %%
-%%%%%%%%%%%%%%%%%%%%%%%%
-
-\input{standardDeviation.tex}
-
-%%%%%%%%%%%%%%%%
-%% COVARIANCE %%
-%%%%%%%%%%%%%%%%
-
-\input{covariance.tex}
-
-%%%%%%%%%%%%%%%%%
-%% CORRELATION %%
-%%%%%%%%%%%%%%%%%
-
-\input{correlation.tex}
+\input{examinables/examinables.tex}
 
 %%%%%%%%%%%%%%%%%%
 %% END DOCUMENT %%

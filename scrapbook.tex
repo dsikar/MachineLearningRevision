@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{witharrows}
+\begin{document}
+
+\section*{Tutorial 1 - INM431 - Model answers}
+Pick the value of p that makes the observation of 53 heads and 47 tails most probable.   
+Since we want heads with a probability p to occur 53 times, and tails with a probability (1-p) to occur 47 times, we take our function $P(D)$  to be a product of all probabilities:
+\begin{equation}
+    P(D) = p^{53}(1-p)^{47}
+\end{equation}
+We are trying to minimize a function, so take the derivative with respect to p, applying the chain rule:
+$$
+\frac{dP(D)}{dp}=53p^{52}(1-p)^{47}(47p^{53}(1-p)^{46})(-1)
+$$
+then set the resulting expression equal to zero, and apply some algebraic manipulation:
+\begin{align*}
+0 & = 53p^{52}(1-p)^{47}(47p^{53}(1-p)^{46})(-1)  \\
+& = 53p^{52}(1-p)^{47}(-47p^{53}(1-p)^{46}) \\
+& = \frac{53p^{53}(1-p)^{47}}{p}\Bigg(\frac{-47p^{53}(1-p)^{47}}{(1-p)}\Bigg) \\
+& = \Bigg(\frac{53}{p}-\frac{47}{1-p}\Bigg)(p^{53}(1-p)^{47})
+\end{align*}
+Since it would suffice that the expression
+$$
+\frac{53}{p}-\frac{47}{1-p}
+$$
+is equal to zero, we can solve for p:
+\begin{align*}
+\frac{53}{p}-\frac{47}{1-p} & = 0 \\
+\frac{53}{p} & = \frac{47}{1-p} \\
+53 - 53p & = 47p \\
+p & = 0.53 \\
+\end{align*}
+%%%%%%%%%%%%%%%%%%
+%% END DOCUMENT %%
+%%%%%%%%%%%%%%%%%%
+
+\end{document}
