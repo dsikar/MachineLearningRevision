@@ -9,7 +9,7 @@ typically expressed as greek letter $\sigma$, lower case \textit{sigma}.
 
 \subsection{Intuition}
 The standard deviation of the values contained in a vector $A$, express how \textit{far} any given value is from the \textit{mean}, or $\mu$ as seen.  
-For our three examples:
+Looking at the mean for our three examples:
 \begin{verbatim}
 >> mean([1 1; 1 2; 1 30]')
 
@@ -17,7 +17,7 @@ ans =
 
     1.0000    1.5000   15.5000
 \end{verbatim}
-we see the vectors, or in this case, array columns, which greater variance, also have a greater mean. The standard deviation then tell us how far away any given value is expected to be far from the mean:
+we see the vectors, or in this case, array columns, which greater variance, also have a greater mean. Looking at the standard deviation for the same array columns:
 \begin{verbatim}
 >> std([1 1; 1 2; 1 30]')
 
@@ -25,7 +25,7 @@ ans =
 
          0    0.7071   20.5061
 \end{verbatim}
-that is to say, it is a measure of how spread out a set of numbers are.
+we see that the standard deviation increases with the variance.
 
 \subsection{units}
 Standard deviation is expressed in the same unit as the mean.
