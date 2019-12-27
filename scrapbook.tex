@@ -12,6 +12,7 @@ Since we want heads with a probability p to occur 53 times, and tails with a pro
     P(D) = p^{53}(1-p)^{47}
 \end{equation}
 We are trying to minimize a function, so take the derivative with respect to p, applying the chain rule:
+We are trying to maximize the likelihood of p
 $$
 \frac{dP(D)}{dp}=53p^{52}(1-p)^{47}(47p^{53}(1-p)^{46})(-1)
 $$
@@ -33,6 +34,8 @@ be equal to zero, we can solve for p:
 53 - 53p & = 47p \\
 p & = 0.53 \\
 \end{align*}
+
+TODO: Fix text, see "Maximum Likelihood Estimator of a Bernoulli Parameter", Ross pg. 231
 %%%%%%%%%%%%%%%%%%
 %% END DOCUMENT %%
 %%%%%%%%%%%%%%%%%%
