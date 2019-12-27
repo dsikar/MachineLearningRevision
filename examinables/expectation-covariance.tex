@@ -2,7 +2,7 @@
 
 In the introduction, we covered expectation and covariance, which we now revisit from a probabilistic perspective. 
 
-\subsection{Expectation}
+\subsection{Expectation - Ross}
 
 Expectation of a random variable is a probability theory concept, defined as:
 
@@ -24,8 +24,40 @@ disp(sum(r)/1000)
 \end{verbatim}
 Note the multiplication by $\frac{1}{6}$ is implied in the random number generation, where approximately $\frac{1}{6}$ of every number in the range 1 to 6 is expected over 1000 draws.
 
-$$
-\frac{dP(D)}{dp}=53p^{52}(1-p)^{47}\big[-47p^{53}(1-p)^{46}\big]
-$$
+\subsection{Expectation - Bishop}
+
+Using the notation in Bishop and class slides (week 2), we have, the average value of a function under a \textbf{probability distribution} p(x) is called the \textit{expectation} of f(x) and will be denoted by $\mathbb{E}[f]$. For a discrete distribution, it is given by:
+\begin{equation}
+    \mathbb{E}[f] = \sum_xp(x)f(x)
+\end{equation}
+so that the average is weighted by the relative probabilities of the different values of $x$. In the case of continuous variables, expectations are expressed in terms of an integration with respect to the corresponding \textbf{probability density}:
+\begin{equation}
+    \mathbb{E}[f] = \int p(x)f(x)d(x)
+\end{equation}
+Given a finite number \textit{N} of points drawn from the probability distribution or probability density, then the expectation can be approximated as:
+\begin{equation}
+    \mathbb{E}[f] \simeq \frac{1}{N}\sum_{i=1}^Nf(x_n)
+\end{equation}
+\subsection{Covariance - Bishop}
+For two random variables \textit{x} and \textit{y}, the \textit{covariance} expresses the extent to which they vary together, it is a measure of linear dependence defined as:
+\begin{align*}
+cov[x,y] & = \mathbb{E}_{x,y}\big[\{x-\mathbb{E}[x]\}\{y-\mathbb{E}[y]\}\big] \\
+& = \mathbb{E}_{x,y}\big[ xy - x\mathbb{E}[y] - y\mathbb{E}[x] + \mathbb{E}[x]\mathbb{E}[y] \big] \\
+& = \mathbb{E}_{x,y}[xy] - \mathbb{E}[x]\mathbb{E}[y] - \mathbb{E}[x]\mathbb{E}[y] + \mathbb{E}[x]\mathbb{E}[y] \\
+& = \mathbb{E}_{x,y}[xy] - \mathbb{E}[x]\mathbb{E}[y] \\
+\end{align*}
+If \textit{x} and \textit{y} are independent the $cov[x,y] = 0$, but the converse is not true e.g. $y=x^2$. Looking at this function in code:
+\begin{verbatim}
+>> cov([-3 -2 -1 0 1 2 3], [9 4 1 0 1 4 9])
+ans =
+    4.6667         0
+         0   14.0000    
+\end{verbatim}
+we see that the covariance, as defined in \ref{covariance}, between \textit{x} and \textit{y} is 0, though (specially in a graph) we can see they are clearly varying together. In case of two vectors of random variables \textbf{x} and \textbf{y}, the covariance is a matrix:
+\begin{align*}
+cov[\boldsymbol{\mathrm{x}},\boldsymbol{\mathrm{y}}] & = \mathbb{E}_{\boldsymbol{\mathrm{x}},\boldsymbol{\mathrm{y}}}\big[\{\boldsymbol{\mathrm{x}}-\mathbb{E}[\boldsymbol{\mathrm{x}}]\}\{\boldsymbol{\mathrm{y}}^\mathrm{T}-\mathbb{E}[\boldsymbol{\mathrm{y}}^\mathrm{T}]\}\big] \\
+& = \mathbb{E}_{\boldsymbol{\mathrm{x}},\boldsymbol{\mathrm{y}}}\big[ \boldsymbol{\mathrm{x}}\boldsymbol{\mathrm{y}}^\mathrm{T} \big] - \mathbb{E}[\boldsymbol{\mathrm{x}}] \mathbb{E}[\boldsymbol{\mathrm{y}}^\mathrm{T}]  
+\end{align*}
+
 
 
