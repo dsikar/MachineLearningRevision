@@ -1,0 +1,33 @@
+\section{Kernel Density Estimation and K-Nearest Neighbours}
+From histograms, we have seen that data can be split into bins of width $\Delta$, that that the probability value for a bin is given by:
+$$
+    p_i=\frac{n_i}{N\Delta_i}
+$$
+If we consider the parameter $\Delta$ to represent a volume, and write the parameter $n_i$ as $K$, representing the number of points falling inside a region, and the parameter $p_i$ as $p(x)$, representing a density we are trying to approximate, we can rewrite the equation as
+\begin{equation}
+    p(x)=\frac{K}{NV} \label{density-estimation}
+\end{equation}
+If we fix $V$ and determine K, that is the Kernel Density Estimation approach. If we fix $K$ and estimate $V$, that is the K-Nearest-Neighbours approach.\\
+If we consider a region $R$ and wish to count the number K of points falling within this region, we use a \textit{Parsen window}:
+$$
+  k((\mathrm{x}-\mathrm{x}_n)/h) = \begin{cases}
+               1,\hspace{1mm}|(x_i-x_{ni})/h|\hspace{1mm} \leq\hspace{1mm} 1/2, \hspace{1mm}i = 1,\cdots, D, \\
+               0\hspace{1mm}otherwise
+            \end{cases}
+$$
+where $\mathrm{x}$ is the hypercube centre, and $h$ is the height. To count the number of points in a hypercube:
+\begin{equation}
+K = \sum_{n=1}^Nk\bigg(\frac{\mathrm{x}-\mathrm{x}_n}{h}\bigg)
+\end{equation}
+Substituting in \ref{density-estimation} and changing $V$ for $h^D$ to represent the volume of a hypercube of side $h$ in $D$ dimensions:
+\begin{equation}
+    p(x) = \frac{1}{N}\sum_{n=1}^N \frac{1}{h^D} k\bigg(\frac{\mathrm{x}-\mathrm{x}_n}{h}\bigg)
+\end{equation}
+%$$
+%k((\mathrm{x}-\mathrm{x}/h = \begin{cases}
+
+
+%$$
+%a center $\mathrm{x}$ and a height
+
+
