@@ -19,15 +19,30 @@ where $\mathrm{x}$ is the hypercube centre, and $h$ is the height. To count the 
 \begin{equation}
 K = \sum_{n=1}^Nk\bigg(\frac{\mathrm{x}-\mathrm{x}_n}{h}\bigg)
 \end{equation}
-Substituting in \ref{density-estimation} and changing $V$ for $h^D$ to represent the volume of a hypercube of side $h$ in $D$ dimensions:
+Substituting in \ref{density-estimation} and changing $V$ for $h^D$ to represent the volume of a hypercube of side $h$ in $D$ dimensions, we have \textbf{kernel density estimator}:
 \begin{equation}
     p(x) = \frac{1}{N}\sum_{n=1}^N \frac{1}{h^D} k\bigg(\frac{\mathrm{x}-\mathrm{x}_n}{h}\bigg)
 \end{equation}
-%$$
-%k((\mathrm{x}-\mathrm{x}/h = \begin{cases}
-
-
-%$$
-%a center $\mathrm{x}$ and a height
-
-
+We now look at the \textbf{K nearest neighbour} method for density estimation. We return to \ref{density-estimation}, fixing the value of $K$ then finding an appropriate value of $V$. We consider a sphere centred on the point $\mathrm{x}$ at which we wish to estimate the density $p(x)$, and we allow the radius of the sphere to grow until it contains precisely $K$ data points. the estimate of the density is then given by \ref{density-estimation} with $V$ set to the volume of the resulting sphere.\\
+The technique can now be extended to address the problem of classification. To do this, we
+apply the \textit{K-nearest-neighbour} density estimation technique to each class separately
+and then make use of Bayes’ theorem. Let us suppose that we have a data set comprising
+$N_k$ points in class $C_k$ with $N$ points in total, so that $\sum_kN_k = N$. If we
+wish to classify a new point $x$, we draw a sphere centred on $x$ containing precisely
+$K$ points irrespective of their class. Suppose this sphere has volume $V$ and contains
+$K_k$ points from class $C_k$. Then \ref{density-estimation} provides an estimate of the density associated with each class
+$$
+p(\mathrm{x}|C_k) = \frac{K_k}{N_kV}
+$$
+remembering that $K_k$ are the total number of points belonging to class $C_k$ in region $V$, and $N_k$ is the total number of points belonging to class $C_k$. The unconditional density is given by 
+$$
+p(\mathrm{x}) = \frac{K}{NV}
+$$
+while the class priors are given by
+$$
+p(C_k) = \frac{Nk}{N}.
+$$
+We can combine the three previous equations and use Bayes' theorem  to obtain the posterior probability of class membership
+$$
+p(C_k|\mathrm{x}) = \frac{(p(\mathrm{x}|C_k)p(C_k)}{p(\mathrm{x})}=\frac{K_k}{K}
+$$
