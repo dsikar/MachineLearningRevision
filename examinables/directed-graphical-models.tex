@@ -1,10 +1,18 @@
-\documentclass{article}
-\usepackage{amsmath}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{witharrows}
-\begin{document}
+\section{Directed Graphical Models}
+Directed Graphical Models, also known as Bayesian Networks. The joint distribution of a graph with $K$ nodes is given by:
+\begin{equation}
+    p(x) = \prod_{k=1}^K p(x_k|pa_k)
+\end{equation}
+where $pa_k$ denotes the set of parents of $x_k$. This is the \textbf{factorization} of a directed graphical model. The learning task is, how to derive join probability distributions to answer questions.
 
+\begin{figure}[tb]
+ \centering 
+\includegraphics[scale=0.42]{images/DGM.png} 
+ \caption{An example of a 3-node graph used to illustrate the phenomenon of ‘explaining away’. The three
+nodes represent the state of the battery (B), the state of the fuel tank (F) and the reading on the electric fuel
+gauge (G).}
+ \label{fig:GDM}
+\end{figure}
 \textbf{When I turn on the car:} \\
 p(B): battery is charged (B=\{0,1\})\\
 p(F): there is fuel in the tank (F=\{0,1\})\\
@@ -84,4 +92,14 @@ then solved
     p(F=0|G=0,B=0) & = \frac{0.9*0.1}{0.81} \\
     & \simeq \textbf{0.111} 
 \end{align*}
-\end{document}
+In the case of a Naive Bayes Classifier (as a DGM), we again make the assumption of independence:
+$$
+p(y,\mathrm{x}) = p(y)\prod_{j=1}^Dp(x_j|y)
+$$
+and would represent the graph likesuch:
+\begin{figure}[tb]
+ \centering 
+\includegraphics[scale=0.42]{images/bayes-dgm.png} 
+ \caption{DGMs - the naive case}
+ \label{fig:GDM}
+\end{figure}

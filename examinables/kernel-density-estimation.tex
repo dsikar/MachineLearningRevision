@@ -8,7 +8,7 @@ If we consider the parameter $\Delta$ to represent a volume, and write the param
     p(x)=\frac{K}{NV} \label{density-estimation}
 \end{equation}
 If we fix $V$ and determine K, that is the Kernel Density Estimation approach. If we fix $K$ and estimate $V$, that is the K-Nearest-Neighbours approach.\\
-If we consider a region $R$ and wish to count the number K of points falling within this region, we use a \textit{Parsen window}:
+If we consider a region $R$ and wish to count the number K of points falling within this region, we use a \textit{Parzen window}:
 $$
   k((\mathrm{x}-\mathrm{x}_n)/h) = \begin{cases}
                1,\hspace{1mm}|(x_i-x_{ni})/h|\hspace{1mm} \leq\hspace{1mm} 1/2, \hspace{1mm}i = 1,\cdots, D, \\
@@ -46,3 +46,5 @@ We can combine the three previous equations and use Bayes' theorem  to obtain th
 $$
 p(C_k|\mathrm{x}) = \frac{(p(\mathrm{x}|C_k)p(C_k)}{p(\mathrm{x})}=\frac{K_k}{K}
 $$
+
+

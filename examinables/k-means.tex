@@ -1,0 +1,108 @@
+\section{K-Means}
+We start by considering the problem of identifying groups, or clusters, of data points in a multidimensional space. Suppose we have a data set $\{\mathrm{x}_i,\cdots,\mathrm{x}_n\}$ consisting
+of $N$ observations of a random $D$-dimensional Euclidean variable $\mathrm{x}_n$. Our goal is to partition the data set into some number $K$ of clusters, where we shall suppose for the moment that the value of $K$ is given. \\ 
+We define $\mu_k$ as a \textit{prototype} associated with the k-th cluter. \\
+We define a \textbf{binary indicator variable} $r_{nk}=\{0,1\}$ which describes which of the clusters a data point $x_n$ is assigned to. \\
+We define an objective (error) function, which we seek to minimise):
+\begin{equation}
+    J = \sum_{n=1}^N \sum_{k=1}^K r_{nk} ||\mathrm{x}_n-\mu_k||^2 \label{objective-function}
+\end{equation}
+We then apply the iterative algorithm: \\
+1. Choose initial values for $\mu_k$ \\
+2. Minimise J wrt binary indicator variable $r_{nk}$ \\
+3. Minimise J wrt $\mu_k$ \\
+4. Repeat 2-3 until convergence, that is until $\mu_k$ no longer changes \\
+Algorithm details: \\
+We choose $\mu_k$ randomly, though in practice domain knowledge would be used for this choice \\
+We update the binary indicator variable $r_{nk}$ using the function: \\
+$$
+r_{nk} = \begin{cases}
+               1,\hspace{1mm} if \hspace{1mm} k = argmin_j||\mathrm{x}_n-\mu_j||^2 \\
+               0\hspace{1mm}otherwise
+            \end{cases}
+$$
+That is to say, given two clusters, with two prototypes (means), we compare the distance of a given point to both means, and assign it to the cluster represented by the smallest mean to the tested point. \\
+We update the mean $\mu_k$:
+$$
+\mu_k = \frac{\sum_n r_{nk}\mathrm{x}_n}{\sum_n r_{nk}}
+$$
+Noting that we obtain the expression for updating the mean $\mu_k$ from \ref{objective-function}, by fixing $k$, taking the first derivative, setting it equal to zero then solving for $\mu_k$:
+\begin{align*}
+    J & = \sum_{n=1}^N r_{nk} (\mathrm{x}_n-\mu_k)^2 \\
+    \frac{d}{dJ}\sum_{n=1}^N r_{nk} (\mathrm{x}_n-\mu_k)^2 & = 0 \\
+    2 \sum_{n=1}^N r_{nk} (\mathrm{x}_n-\mu_k) & = 0 \\
+    2\sum_{n=1}^N r_{nk}\mathrm{x}_n - 2\sum_{n=1}^N r_{nk}\mu_k & = 0 \\
+    \sum_{n=1}^N r_{nk}\mu_k & = \sum_{n=1}^N r_{nk}\mathrm{x}_n \\
+    \mu_k & = \frac{\sum_n r_{nk}\mathrm{x}_n}{\sum_n r_{nk}}    
+\end{align*}
+So $\mu_k$ is the mean of the $k$-th cluster, thus the name k-means. A practical worked example: \\
+\\
+You have the following set of 2-dimensional data points: \{1.9, 1.9\}, \{0.9, 1.1\}, \{1.8, 2.0\}, \{0.8, 1.0\}, \{1.1, 0.9\}, \{2.0, 1.9\}, \{1.0, 0.9\}, \{1.9, 1.8\}. \\
+\\
+Apply K-means with K=2 clusters using the following initial values for cluster prototypes: $\mu_1$= \{1.0, 1.0\} and $\mu_2$= \{2.0, 2.0\}. \\
+\\
+Which are the values of the final prototypes for each cluster? \\
+\\
+To which cluster does each data point belong to? \\
+\\
+Since step 1 is given, we go on to step 2: \\
+To calculate we take the sum of the difference of squares between the data point and the mean coordinates: \\
+For $x_1$ and $\mu_1$ we have $\Delta_1 = (1.9-1.0)^2+(1.9-1.0)^2 = 1.62$, and for $x_1$ and $\mu_2$ we have $\Delta_2 = (1.9-2.0)^2+(1.9-2.0)^2 = 0.02$, repeating for all:
+\begin{verbatim}
+u1= {1.0, 1.0} and u2= {2.0, 2.0}
+x1 {1.9, 1.9}
+(1.9-1.0)^2 + (1.9-1.0)^2 = 1.62
+(1.9-2.0)^2 + (1.9-2.0)^2 = 0.02
+x2 {0.9, 1.1}
+(0.9-1.0)^2 + (0.9-1.0)^2 = 0.02
+(1.1-2.0)^2 + (1.1-2.0)^2 = 1.62
+x3 {1.8, 2.0}
+(1.8-1.0)^2 + (1.8-1.0)^2 = 1.28
+(2.0-2.0)^2 + (2.0-2.0)^2 = 0
+x4 {0.8, 1.0}
+(0.8-1.0)^2 + (0.8-1.0)^2 = 0.08
+(1.0-2.0)^2 + (1.0-2.0)^2 = 2
+x5 {1.1, 0.9}
+(1.1-1.0)^2 + (1.1-1.0)^2 = 0.02
+(0.9-2.0)^2 + (0.9-2.0)^2 = 2.42
+x6 {2.0, 1.9}
+(2.0-1.0)^2 + (2.0-1.0)^2 = 2
+(1.9-2.0)^2 + (1.9-2.0)^2 = 0.02
+x7 {1.0, 0.9}
+(1.0-1.0)^2 + (1.0-1.0)^2 = 0
+(0.9-2.0)^2 + (0.9-2.0)^2 = 2.42
+x8 {1.9, 1.8}
+(1.9-1.0)^2 + (1.9-1.0)^2 = 1.62
+(1.8-2.0)^2 + (1.8-2.0)^2 = 0.08    
+\end{verbatim}
+so now we assign data points to binary indicator variables:
+\begin{center}
+ \begin{tabular}{||c c c c||} 
+ \hline
+ $\Delta_1$ & $\Delta_2$ & $r_1$ & $r_2$  \\ [0.5ex] 
+ \hline\hline
+ 1.62 & 0.02 & 0 & 1 \\ 
+ \hline
+ 0.02 & 1.62  & 1 & 0 \\ 
+ \hline
+1.28 & 0 & 0 & 1 \\
+ \hline
+0.08 & 2 & 1 & 0 \\
+ \hline
+ 0.02 & 2.42 & 1 & 0 \\ 
+  \hline
+2 & 0.02 & 0 & 1 \\
+ \hline
+0 & 2.42 & 1 & 0 \\
+ \hline
+ 1.62 & 0.08 & 0 & 1 \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+and recompute the means:
+$$
+
+$$
+
+
+

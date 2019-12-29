@@ -1,0 +1,8 @@
+\section{Mixture Models}
+Considering a \textit{bottleneck} in the context of a \textit{Latent Variable Model} (slidedeck 8 pg. 6), the simplest form of LVM has discrete latent states $z_i$, that is to say we create a new variable $z$ with $i$ possible values, and define $p(x_i)=(z_i=k)=p_k(\mathrm{x}_i)$. Instead of finding the probability of $x$, we now try to find the conditional probability of $x$ given $z$, defining it as $p_k(\mathrm{x_i})$. Instead of talking about $x$, we'll talk about "p 1 of $x$, p 2 of $x$, and so on. And I am going to add those, that is why I end up with a mixture, connecting the concept of latent variables with mixture models. I a simply saying that, the probability of $x$, which depends on a number of parameters $\Theta$ is now the sum of those $p_k$ values:
+\begin{equation}
+    p(\mathrm{x}_i|\theta)=\sum_{k=1}^K \pi_k p_k (\mathrm{x}_i|\theta)
+\end{equation}
+I create a weighted sum, I add $\pi_k$ which is know as the \textbf{mixing weights} to the mixture. So I am talking about different probability distributions which are going to be added, but I am also going to say that this one has a higher weight, this one is more important than that one. \\
+Think about a histogram, you could take averages, but you could also say, this one is more important and take weighted averages. So that is what $\pi_k$ is doing there, and it stands for the probability that $z$ equals $k$, that is $p(z=k)$ \\
+$\Theta$ are the parameters we had before so if we are talking about gaussians, $\Theta$ would be the \textit{mean} and \textit{variance}. So we have a mean vector and a covariance matrix, and we are going to give weights $\pi$ to each gaussian.
