@@ -1,0 +1,21 @@
+\section{Expectation Maximization}
+The \textit{expectation-maximization} algorithm (EM) is a method for finding a maximum likelihood estimation (MLE) solution for Latent Variable Models (LVMs). As as example, given a Gaussian Mixture Model (GMM), we can maximize the means, covariances and mixing coefficients (responsibilities) using the expectation-maximization algorithm by applying these steps: \\
+1. Initialize $\mu_k$, $\Sigma_k$ and $\pi_k$ \\
+2. Expectation step (E-step), update the responsibilities $\gamma(z_{nk})$: \\
+$$
+\gamma(z_{nk}) = \frac{\pi_k\mathcal{N}(\mathrm{x}_n|\mu_k,\Sigma_k)}{\sum\limits_{j=1}^{K} \pi_j \mathcal{N} (\mathrm{x}_j|\mu_j,\Sigma_j)}
+$$
+3. Maximization step (M-step), update $\mu_k$, $\Sigma_k$ and $\pi_k$:
+\begin{align*}
+    \mu_k^{new} & = \frac{1}{N_k}\sum_{n=1}^N  \gamma(z_{nk})\mathrm{x}_n \\
+    \Sigma_k^{new} & = \frac{1}{N_k}\sum_{n=1}^N  \gamma(z_{nk})(\mathrm{x}_n - \mu_k^{new})(\mathrm{x}_n - \mu_k^{new})^T \\
+    N_k & = \sum_{n=1}^K \gamma(z_{nk}) \\
+    \pi_k^{new} & = \frac{N_k}{N}
+\end{align*}
+4. Evaluate the log-likelihood and check for convergence. If criterion is not satisfied, go to step 2.\\
+    The expressions for $\mu_k$, $\Sigma_k$ and $\pi_k$ are obtained from the log-likelihood of the data using a GMM:
+\begin{equation}
+    \mathrm{ln}\hspace{1mm}p(\mathrm{X}|\pi, \mu, \Sigma) = \sum_{n=1}^N\mathrm{ln}\Bigg\{ \sum_{k=1}^K \pi_k\mathcal{N}(\mathrm{x}_n|\mu_k, \Sigma_k) \Bigg\}
+\end{equation}
+and $N_k$ is the number of points assigned to cluster $k$. Notice the similarity between the EM and the K-means algorithms. Both have expectation and maximization steps. The difference is K-means performs a \textit{hard} assignment of a data point to a cluster, while EM performs a \textit{soft} assignment.
+ 

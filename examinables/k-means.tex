@@ -75,7 +75,7 @@ x8 {1.9, 1.8}
 (1.9-1.0)^2 + (1.8-1.0)^2 = 1.45
 (1.9-2.0)^2 + (1.8-2.0)^2 = 0.05    
 \end{verbatim}
-so now we assign data points to binary indicator variables:
+Once the distances are known, we assign data points to binary indicator variables:
 \begin{center}
  \begin{tabular}{||c c c c||} 
  \hline
@@ -99,7 +99,7 @@ so now we assign data points to binary indicator variables:
  \hline
 \end{tabular}
 \end{center}
-and recompute the means:
+Now we assign each data point to a cluster. If the value of $\Delta_1$ is lowest, we assign one to $r_1$ and zero to $r_2$. If the value of $\Delta_2$ is lowest, we assign zero to $r_1$ and one to $r_2$. Now that we now which data points belong to which clusters, we can recompute the means:
 \begin{verbatim}
 new u1 x2+x4+x5+x7/4 
 {0.9, 1.1} + {0.8, 1.0} + {1.1, 0.9} + {1.0, 0.9} 
