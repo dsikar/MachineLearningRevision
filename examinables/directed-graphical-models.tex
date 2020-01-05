@@ -211,3 +211,89 @@ p(\midtilde B, \midtilde C | A) & = \frac{p(A,\midtilde B,\midtilde C)}{p(A)}  =
 \end{align*}
 The most likely explanation Mike is not answering the phone, is $p(\midtilde B|A)$, that is to say \textit{Mike is not at home, given he is not answering his phone}.
 
+\subsection{Conditional Independence Proofs}
+Consider $a, b, c$ such that:
+$$
+p(a|b,c) = p(c)
+$$
+We say that a is \textbf{}{conditionally independent} of $b$ given $c$.
+\begin{figure}[H]
+ \centering 
+\includegraphics[scale=0.42]{images/tail-to-tail.png} 
+ \caption{Directed graph - tail-to-tail}
+ \label{fig:tail-to-tail}
+\end{figure}
+Note: node c is said to be tail-to-tail with respect to the path from a to b.
+\begin{align*}
+    p(a,b,c) & = p(a|c)p(b|c)p(c) \\
+    p(a,b) & = \sum_c p(a|c)p(b|c)p(c) \\
+\end{align*}
+
+\begin{figure}[H]
+ \centering 
+\includegraphics[scale=0.42]{images/tail-to-tail-given-c.png} 
+ \caption{Directed graph - tail-to-tail given c}
+ \label{fig:tail-to-tail-given-c}
+\end{figure}
+\begin{align*}
+    p(a,b|c) & = \frac{p(a,b,c)}{p(c)} \\
+    % & = \frac{\sum\limits_c p(a,b|c)}{p(c)}
+    & = \frac{p(a|c)p(b|c)p(c)}{p(c)} \\
+    p(a,b|c) & = p(a|c)p(b|c) \\
+\end{align*}
+
+\begin{figure}[H]
+ \centering 
+\includegraphics[scale=0.42]{images/head-to-tail.png} 
+ \caption{Directed graph - head-to-tail}
+ \label{fig:head-to-tail}
+\end{figure}
+Note: node $c$ is said to be \textit{head-to-tail} with respect to the path from $a$ to $b$.
+\begin{align*}
+    p(a,b,c) & = p(a)p(c|a)p(b|c) \\
+    p(a,b) & = \sum_c p(a)p(c|a)p(b|c) \\
+    p(a,b) & = p(a) \sum_c p(c|a)p(b|c) \\
+    since:\\
+    \sum_c p(c|a)p(b|c) & = \frac{p(a,b)}{p(a)} = p(b|a) \\
+    p(a,b) & = p(a)p(b|a) \\
+\end{align*}
+\begin{figure}[H]
+ \centering 
+\includegraphics[scale=0.42]{images/head-to-tail-given-c.png} 
+ \caption{Directed graph - head-to-tail given c}
+ \label{fig:head-to-tail-given-c}
+\end{figure}
+\begin{align*}
+    p(a,b,c) & = p(a)p(c|a)p(b|c) \\
+    p(a,b|c) & = \frac{p(a)p(c|a)p(b|c)}{p(c)} \\
+    p(a,b|c) & = \frac{p(a)\frac{p(a|c)p(c)}{p(a)} p(b|c)}{p(c)} \\
+    p(a,b|c) & = \frac{p(a|c)p(c) p(b|c)}{p(c)} \\
+    p(a,b|c) & = p(a|c)p(b|c) \\
+\end{align*}
+\begin{figure}[H]
+ \centering 
+\includegraphics[scale=0.42]{images/head-to-head.png} 
+ \caption{Directed graph - head-to-head}
+ \label{fig:head-to-head}
+\end{figure}
+Note: node $c$ is said to be \textit{head-to-head} with respect to the path from $a$ to $b$.
+\begin{align*}
+    p(a,b,c) & = p(a)p(b)p(c|a,b) \\
+    p(a,b) & = \sum_c p(a)p(b)p(c|a,b) \\
+    p(a,b) & = p(a)p(b) \sum_c p(c|a,b) \\
+    p(a,b) & = p(a)p(b) \Big(p(c|a,b) + p(\midtilde c|a,b)\Big)  \\ 
+    p(a,b) & = p(a)p(b) (1)  \\  
+    p(a,b) & = p(a)p(b) \\       
+\end{align*}
+\begin{figure}[H]
+ \centering 
+\includegraphics[scale=0.42]{images/head-to-head-given-c.png} 
+ \caption{Directed graph - head-to-head given c}
+ \label{fig:head-to-head-given-c}
+\end{figure}
+\begin{align*}
+    p(a,b|c) & = \frac{p(a,b,c)}{p(c)} \\
+    p(a,b|c) & = \frac{p(a)p(b)p(c|a,b)}{p(c)} \\
+\end{align*}
+
+
